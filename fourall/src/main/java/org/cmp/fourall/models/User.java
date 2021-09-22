@@ -3,21 +3,22 @@ package org.cmp.fourall.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name="user",schema = "public")
 public class User {
-    public User(){}
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
+
+    @Column(name ="user_name" )
     private String userName;
-    @Column
+    @Column(name = "user_password")
     private String userPassword;
 
-    public Integer getId() {
-        return id;
-    }
+    public User(){}
+
+    public Integer getId() { return id; }
 
     public void setId(Integer id) {
         this.id = id;
