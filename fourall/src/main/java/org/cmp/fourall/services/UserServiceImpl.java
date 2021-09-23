@@ -20,14 +20,14 @@ public class UserServiceImpl implements UserServices {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAllUsers() {
         System.out.println("Handling request mapping [ GET ] ALL users ");
         return userRepository.findAll();
     }
 
     @Override
     @SneakyThrows
-    public User findById(Integer id) {
+    public User findByUserId(Integer id) {
         System.out.println("Handling request mapping [ GET ] user by id ");
         return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found"));

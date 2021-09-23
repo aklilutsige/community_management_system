@@ -19,12 +19,12 @@ public class UserController {
 
     @GetMapping("/users")
     public List<User> getAllUsers(){
-        return userServices.findAll();
+        return userServices.findAllUsers();
     }
 
-    @GetMapping("/users/{id}")
-    public User getUserByID(@PathVariable Integer id){
-        return userServices.findById(id);
+    @GetMapping("/users/{userId}")
+    public User getUserByUserId(@PathVariable Integer userId){
+        return userServices.findByUserId(userId);
     }
 
     @PostMapping("/users")
@@ -32,17 +32,17 @@ public class UserController {
         return userServices.saveAndFlush(user);
     }
 
-    @PutMapping("/users/{id}")
-    public User updateExistUser(@PathVariable Integer id, @RequestBody User user){
-        System.out.println("User "+id + "User object : " + user.toString());
-        User existingUser = userServices.getOne(id);
-        BeanUtils.copyProperties(user, existingUser,"id");
-        return userServices.updateUserById(id,existingUser);
+    @PutMapping("/users/{userId}")
+    public User updateExistUser(@PathVariable Integer userId, @RequestBody User user){
+        System.out.println("User "+userId + "User object : " + user.toString());
+        User existingUser = userServices.getOne(userId);
+        BeanUtils.copyProperties(user, existingUser,"userId");
+        return userServices.updateUserById(userId,existingUser);
     }
 
-    @DeleteMapping("/users/{id}")
-    public void deleteExistUser(@PathVariable Integer id){
+    @DeleteMapping("/users/{userId}")
+    public void deleteUserByuserId(@PathVariable Integer userId){
         //Also need to check records before deleting...
-        userServices.deleteUserById(id);
+        userServices.deleteUserById(userId);
     }
 }
