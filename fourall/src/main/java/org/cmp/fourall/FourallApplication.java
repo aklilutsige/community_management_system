@@ -11,5 +11,4 @@ public class FourallApplication {
         SpringApplication.run(FourallApplication.class, args);
     }
 
-
 }

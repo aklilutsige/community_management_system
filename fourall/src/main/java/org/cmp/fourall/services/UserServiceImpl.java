@@ -49,6 +49,8 @@ public class UserServiceImpl implements UserServices {
         System.out.println("Handling request mapping [ PUT ] update user by id ");
         User existingUser = userRepository.findById(id).get();
         System.out.println(existingUser);
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
         existingUser.setUserName(user.getUserName());
         existingUser.setUserPassword(user.getUserPassword());
         return userRepository.save(existingUser);
