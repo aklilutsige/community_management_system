@@ -9,6 +9,7 @@ public class FourallApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FourallApplication.class, args);
+
     }
 
 }
