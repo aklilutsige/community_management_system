@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
 
 @Getter
 @Setter
@@ -32,81 +34,76 @@ public class User implements UserDetails {
     @Column(name ="user_name" )
     private String userName;
 
+    @Column(name = "user_mail")
+    private String userEmail;
+
     @Column(name = "user_password")
     private String userPassword;
 
-    public Integer getUserId() {
-        return userId;
-    }
+    @Column(name="user_role")
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 
-    public void setUserId(Integer userId) {
-        userId = userId;
-    }
+    @Column(name = "locked")
+    private Boolean locked;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    @Column(name="enabled")
+    private Boolean enabled;
 
-    public void setFirstName(String firstName) {
+    public User(Integer userId,
+                String firstName,
+                String lastName,
+                String userName,
+                String userEmail,
+                String userPassword,
+                UserRole userRole,
+                Boolean locked,
+                Boolean enabled
+    ) {
+        this.userId = userId;
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
+        this.userEmail = userEmail;
         this.userPassword = userPassword;
+        this.userRole = userRole;
+        this.locked = locked;
+        this.enabled = enabled;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(userRole.name());
+        return Collections.singletonList(authority);
     }
-
     @Override
     public String getPassword() {
-        return null;
+        return userPassword;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return userName;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return !locked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return enabled;
     }
 }
