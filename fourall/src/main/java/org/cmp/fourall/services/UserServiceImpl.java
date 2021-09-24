@@ -48,11 +48,12 @@ public class UserServiceImpl implements UserServices {
     public User updateUserById(Integer id, User user) {
         System.out.println("Handling request mapping [ PUT ] update user by id ");
         User existingUser = userRepository.findById(id).get();
-        System.out.println(existingUser);
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
-        existingUser.setUserName(user.getUserName());
+        existingUser.setUserName(user.getUsername());
+        existingUser.setUserEmail(user.getUserEmail());
         existingUser.setUserPassword(user.getUserPassword());
+        existingUser.setUserRole(user.getUserRole());
         return userRepository.save(existingUser);
     }
     @Override

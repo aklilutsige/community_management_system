@@ -34,7 +34,7 @@ public class User implements UserDetails {
     @Column(name ="user_name" )
     private String userName;
 
-    @Column(name = "user_mail")
+    @Column(name = "user_email")
     private String userEmail;
 
     @Column(name = "user_password")
@@ -44,10 +44,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    @Column(name = "locked")
+    @Column(name = "user_locked")
     private Boolean locked;
 
-    @Column(name="enabled")
+    @Column(name="user_enabled")
     private Boolean enabled;
 
     public User(Integer userId,

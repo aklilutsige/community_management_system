@@ -1,6 +1,5 @@
 package org.cmp.fourall.models;
 
 public enum UserRole {
-    User,
-    ADMIN
+    USER,ADMIN
 }
