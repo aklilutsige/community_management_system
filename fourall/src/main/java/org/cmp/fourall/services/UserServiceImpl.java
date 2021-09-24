@@ -14,6 +14,7 @@ import java.util.List;
 public class UserServiceImpl implements UserServices {
     @Autowired
     private final UserRepository userRepository;
+    private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserServices {
     }
 
     @Override
-    public User getOne(Integer id){
+    public User getOne(Integer id) {
         return userRepository.getOne(id);
     }
 
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserServices {
         existingUser.setUserRole(user.getUserRole());
         return userRepository.save(existingUser);
     }
+
     @Override
     public void deleteUserById(Integer id) {
         System.out.println("Handling request mapping [ DELETE ] user by id ");
