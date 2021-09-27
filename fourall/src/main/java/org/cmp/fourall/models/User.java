@@ -50,15 +50,8 @@ public class User implements UserDetails {
     @Column(name="user_enabled")
     private Boolean enabled;
 
-    public User(Integer userId,
-                String firstName,
-                String lastName,
-                String userName,
-                String userEmail,
-                String userPassword,
-                UserRole userRole,
-                Boolean locked,
-                Boolean enabled
+    public User(Integer userId, String firstName, String lastName, String userName,
+                String userEmail,String userPassword,UserRole userRole,Boolean locked, Boolean enabled
     ) {
         this.userId = userId;
         this.firstName = firstName;

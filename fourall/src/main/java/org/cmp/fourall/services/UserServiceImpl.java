@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserServices {
-    @Autowired
+    @Autowired    
     private final UserRepository userRepository;
     private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 
